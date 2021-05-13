@@ -43,6 +43,7 @@ class Item(Resource):
         result.delete_from_db()
         return {"message": "{} is deleted from DB".format(name)}
 
+    @jwt_required()
     def put(self, name):
         # data = request.get_json()
         data = Item.parser.parse_args()

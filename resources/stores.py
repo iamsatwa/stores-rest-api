@@ -1,15 +1,18 @@
 from flask_restful import Resource
 from models.store import StoreModel
+from flask_jwt import jwt_required
 
 
 class Store(Resource):
 
+    @jwt_required()
     def get(self, name):
         store = StoreModel.get_store_by_name(name)
         if store:
             return store.json()
         return {"message": "store {} is not found in db".format(name)}, 404
 
+    @jwt_required()
     def post(self, name):
         store = StoreModel.get_store_by_name(name)
         if store:
@@ -21,6 +24,7 @@ class Store(Resource):
             return {"message": "Error occurred, while creating a store"}, 500
         return {"message": "store {} has been  created".format(name)}, 201
 
+    @jwt_required()
     def delete(self, name):
         store = StoreModel.get_store_by_name(name)
         if store:
@@ -30,6 +34,7 @@ class Store(Resource):
 
 
 class StoreList(Resource):
+    @jwt_required()
     def get(self):
         """
         store.json() method call json() method in models/store.py
