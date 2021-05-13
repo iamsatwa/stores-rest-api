@@ -6,3 +6,4 @@ passlib
 SQLAlchemy
 PyJWT
 uwsgi
+example --use-feature=2020-resolver
