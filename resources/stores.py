@@ -7,17 +7,17 @@ class Store(Resource):
 
     @jwt_required()
     def get(self, name):
-        store = StoreModel.get_store_by_name(name)
+        store = StoreModel.get_store_by_name(name.lower())
         if store:
             return store.json()
         return {"message": "store {} is not found in db".format(name)}, 404
 
     @jwt_required()
     def post(self, name):
-        store = StoreModel.get_store_by_name(name)
+        store = StoreModel.get_store_by_name(name.lower())
         if store:
             return {"message": "store {} is found in db".format(name)}, 400
-        store_obj = StoreModel(name)
+        store_obj = StoreModel(name.lower())
         try:
             store_obj.save_to_db()
         except:
@@ -26,7 +26,7 @@ class Store(Resource):
 
     @jwt_required()
     def delete(self, name):
-        store = StoreModel.get_store_by_name(name)
+        store = StoreModel.get_store_by_name(name.lower())
         if store:
             store.delete_from_db()
             return {"message": "{} is deleted from DB".format(name)}, 201

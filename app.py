@@ -1,3 +1,4 @@
+from datetime import timedelta
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -10,6 +11,7 @@ app = Flask(__name__)
 app.secret_key ='satyajit'
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"  # database connection
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=3600) # config JWT to expire within  an hour
 api = Api(app)
 jwt = JWT(app, authenticate, identity)  # /auth end point
 
