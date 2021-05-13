@@ -1,9 +1,9 @@
-Flask
-Flask-JWT
-Flask-RESTful
-Flask-SQLAlchemy
-passlib
+Flask==1.1.2
+Flask-JWT==0.3.2
+Flask-RESTful==0.3.8
+Flask-SQLAlchemy==2.5.1
+passlib==1.7.4
 SQLAlchemy
-PyJWT
+PyJWT==1.4.2
 uwsgi
 example --use-feature=2020-resolver
