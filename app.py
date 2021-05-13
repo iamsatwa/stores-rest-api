@@ -14,11 +14,6 @@ api = Api(app)
 jwt = JWT(app, authenticate, identity)  # /auth end point
 
 
-@app.before_first_request  # Registers a function to be run before the first request to this instance of the application
-def create_tables():
-    db.create_all()        # if data.db is not created then it will create data.db before the first request
-
-
 api.add_resource(Item, '/item/<string:name>')
 api.add_resource(Store, '/store/<string:name>')
 api.add_resource(ItemList, '/items')
