@@ -1,3 +1,4 @@
+import os
 from datetime import timedelta
 from flask import Flask
 from flask_restful import Api
@@ -9,7 +10,8 @@ from resources.stores import Store, StoreList
 # JWT - json web token
 app = Flask(__name__)
 app.secret_key ='satyajit'
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///data.db"  # database connection
+# read the DATABASE_URL from Heroku. If it is not available then it will take sqlite db
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')  # database connection
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=3600) # config JWT to expire within  an hour
 api = Api(app)

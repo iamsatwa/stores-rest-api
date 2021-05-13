@@ -7,3 +7,4 @@ SQLAlchemy
 PyJWT==1.4.2
 uwsgi
 example --use-feature=2020-resolver
+psycopg2
