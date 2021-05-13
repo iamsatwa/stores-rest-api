@@ -11,8 +11,8 @@ class Item(Resource):
                         type=float,
                         required=True,
                         help="This field cannot blank")
-    parser.add_argument("store_id",
-                        type=int,
+    parser.add_argument("store",
+                        type=str,
                         required=True,
                         help="This field cannot blank")
 
