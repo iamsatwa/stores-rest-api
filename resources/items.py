@@ -52,8 +52,9 @@ class Item(Resource):
         # data = request.get_json()
         data = Item.parser.parse_args()
         item = ItemModel.get_item_by_name(name.lower())
+        store_obj = StoreModel.get_store_by_name(data['store'].lower())
         if not item:
-            item = ItemModel(name.lower(), **data)
+            item = ItemModel(name.lower(), data["price"], store_obj.id)
         else:
             item.price = data["price"]
         item.save_to_db()
