@@ -11,9 +11,9 @@ from resources.stores import Store, StoreList
 app = Flask(__name__)
 app.secret_key ='satyajit'
 # read the DATABASE_URL from Heroku. If it is not available then it will take sqlite db
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db')  # database connection
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('CUSTOM_DATABASE_URL', 'sqlite:///data.db')  # database connection
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=3600) # config JWT to expire within  an hour
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=3600)  # config JWT to expire within  an hour
 api = Api(app)
 jwt = JWT(app, authenticate, identity)  # /auth end point
 
